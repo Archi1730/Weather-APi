@@ -19,12 +19,22 @@ namespace Weather_APi
         }
 
         string city;
+
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
 
 
 
             city = textCity.Text;
+            if (city == "")
+            {
+                MessageBox.Show("Błąd", "Podaj nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Reset();
+
+            return;
+            }
 
             var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", city);
 
@@ -75,17 +85,28 @@ namespace Weather_APi
 
 
 
-            txtCountry.Show();
-            textTemp.Show();
-            textTempFeelsLike.Show();
-            textMaxWindSpeed.Show();
-            textWindDirection.Show();
-            textPressure.Show();
-            textHumidity.Show();
-            txtCloudy.Show();
-            txtChanceOfRain.Show();
-            txtSunrise.Show();
-            txtSunset.Show();
+            var allTextBoxes = new List<TextBox>
+            {
+            txtCountry,
+            textHumidity,
+            textPressure,
+            textTempFeelsLike,
+            textTemp,
+            textMaxWindSpeed,
+            textWindDirection,
+            txtChanceOfRain,
+            txtSunrise,
+            txtSunset
+
+        };
+
+            
+            foreach (var boxes in allTextBoxes)
+            {
+                boxes.Show();
+            }
+
+
 
 
 
@@ -142,7 +163,34 @@ namespace Weather_APi
 
 
         }
+        private void Reset()
+        {
+            
+            var allTextBoxes = new List<TextBox>
+            {
+            txtCountry,
+            textHumidity,
+            textPressure,
+            textTempFeelsLike,
+            textTemp,
+            textMaxWindSpeed,
+            textWindDirection,
+            txtChanceOfRain,
+            txtSunrise,
+            txtSunset
 
+        };
+
+
+            foreach (var boxes in allTextBoxes)
+            {
+                boxes.Visible = false;
+                boxes.Text = "";
+                
+            }
+
+
+        }
 
     }
 }
