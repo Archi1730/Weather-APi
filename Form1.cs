@@ -20,7 +20,7 @@ namespace Weather_APi
 
         string city;
 
-       
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -28,14 +28,31 @@ namespace Weather_APi
 
 
             city = textCity.Text;
-            if (city == "")
+            city.Trim();
+
+            //try
+            //{
+                
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+
+            if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) )
             {
+               
                 MessageBox.Show("Błąd", "Podaj nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
 
             return;
             }
+           
+            //else if (string.IsNullOrWhiteSpace(city))
+            //{
 
+            //}
             var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", city);
 
             var doc = XDocument.Load(url);
@@ -186,6 +203,7 @@ namespace Weather_APi
             {
                 boxes.Visible = false;
                 boxes.Text = "";
+                textCity.Text = "";
                 
             }
 
