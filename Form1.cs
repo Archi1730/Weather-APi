@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,42 +24,45 @@ namespace Weather_APi
 
         string city;
 
-        List<int> incik = new List<int>
-        {
-            5,
-            6,
-            7,
-
-        };
-
-        List<TextBox> allTextBoxes = new List<TextBox>
-            {
-            txtCountry,
-            textHumidity,
-            textPressure,
-            textTempFeelsLike,
-            textTemp,
-            textMaxWindSpeed,
-            textWindDirection,
-            txtChanceOfRain,
-            txtSunrise,
-            txtSunset
-
-        };
+        
 
 
         private bool textCity_Validating(string city)
         {
-            var patern = new Regex(@"[A-Za-z]");
-
-            return patern.IsMatch(city);
+            var pattern = new Regex(@"[A-Za-z]");
+            
+            return pattern.IsMatch(city);
         }
+        //static string RemoveDiacriticsPL(string city)
+        //{
+        //    var normalizedString = city.Normalize(NormalizationForm.FormD);
+        //    var stringBuilder = new StringBuilder();
 
+        //    foreach (var c in normalizedString)
+        //    {
+        //        var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+        //        if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+        //        {
+        //            stringBuilder.Append(c);
+        //        }
+        //    }
+
+        //    return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        //}
+
+        // TO DO 
+        // try catch gdy nie znajduje miejscowosci w xmlu
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             city = textCity.Text;
+
+            
+            byte[] tempBytes;
+            tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
+            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+
+
             var textBoxValidating = textCity_Validating(city);
 
             if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) || !textBoxValidating)
@@ -72,13 +76,12 @@ namespace Weather_APi
             }
 
 
-            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", city);
+            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
 
             var doc = XDocument.Load(url);
 
             var iconUrl = (string)doc.Descendants("icon").FirstOrDefault();
             var client = new WebClient();
-
             var image = client.DownloadData("http:" + iconUrl);
 
             var stream = new MemoryStream(image);
@@ -203,7 +206,20 @@ namespace Weather_APi
         private void Reset()
         {
 
+           var allTextBoxes = new List<TextBox>
+            {
+            txtCountry,
+            textHumidity,
+            textPressure,
+            textTempFeelsLike,
+            textTemp,
+            textMaxWindSpeed,
+            textWindDirection,
+            txtChanceOfRain,
+            txtSunrise,
+            txtSunset
 
+        };
 
             foreach (var boxes in allTextBoxes)
             {
