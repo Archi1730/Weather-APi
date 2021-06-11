@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -22,39 +23,55 @@ namespace Weather_APi
 
         string city;
 
+        List<int> incik = new List<int>
+        {
+            5,
+            6,
+            7,
+
+        };
+
+        List<TextBox> allTextBoxes = new List<TextBox>
+            {
+            txtCountry,
+            textHumidity,
+            textPressure,
+            textTempFeelsLike,
+            textTemp,
+            textMaxWindSpeed,
+            textWindDirection,
+            txtChanceOfRain,
+            txtSunrise,
+            txtSunset
+
+        };
 
 
-        //private void textBoxSample_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    e.Handled = !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar);
-        //}
-        //void textCity_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    if (textCity.Text.Length <= 2)
-        //    {
-        //        e.Cancel = true;
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //    }
-        //}
+        private bool textCity_Validating(string city)
+        {
+            var patern = new Regex(@"[A-Za-z]");
+
+            return patern.IsMatch(city);
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-           // this.AutoValidate = AutoValidate.EnableAllowFocusChange;
 
-            if (textCity.Text.Length <= 2 || string.IsNullOrWhiteSpace(textCity.Text) )
+            city = textCity.Text;
+            var textBoxValidating = textCity_Validating(city);
+
+            if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) || !textBoxValidating)
             {
 
-                MessageBox.Show("Błąd", "Podaj nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Błąd", "Podaj poprawną nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
 
 
-              return;
+                return;
             }
-            
-            city = textCity.Text;
-            
+
+
             var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", city);
 
             var doc = XDocument.Load(url);
@@ -119,7 +136,7 @@ namespace Weather_APi
 
         };
 
-            
+
             foreach (var boxes in allTextBoxes)
             {
                 boxes.Show();
@@ -182,32 +199,19 @@ namespace Weather_APi
 
 
         }
+
         private void Reset()
         {
-            
-            var allTextBoxes = new List<TextBox>
-            {
-            txtCountry,
-            textHumidity,
-            textPressure,
-            textTempFeelsLike,
-            textTemp,
-            textMaxWindSpeed,
-            textWindDirection,
-            txtChanceOfRain,
-            txtSunrise,
-            txtSunset
 
-        };
 
 
             foreach (var boxes in allTextBoxes)
             {
                 boxes.Visible = false;
                 boxes.Text = "";
-                
+
             }
-                textCity.Text = "";
+            textCity.Text = "";
 
 
         }
