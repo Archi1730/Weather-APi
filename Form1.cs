@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -22,37 +24,37 @@ namespace Weather_APi
 
 
 
+        //private void textBoxSample_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    e.Handled = !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        //}
+        //void textCity_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    if (textCity.Text.Length <= 2)
+        //    {
+        //        e.Cancel = true;
+        //    }
+        //    else
+        //    {
+        //        e.Cancel = false;
+        //    }
+        //}
         private void button1_Click(object sender, EventArgs e)
         {
+           // this.AutoValidate = AutoValidate.EnableAllowFocusChange;
 
-
-
-            city = textCity.Text;
-            city.Trim();
-
-            //try
-            //{
-                
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
-            if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) )
+            if (textCity.Text.Length <= 2 || string.IsNullOrWhiteSpace(textCity.Text) )
             {
-               
+
                 MessageBox.Show("Błąd", "Podaj nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
 
-            return;
-            }
-           
-            //else if (string.IsNullOrWhiteSpace(city))
-            //{
 
-            //}
+              return;
+            }
+            
+            city = textCity.Text;
+            
             var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", city);
 
             var doc = XDocument.Load(url);
@@ -203,12 +205,13 @@ namespace Weather_APi
             {
                 boxes.Visible = false;
                 boxes.Text = "";
-                textCity.Text = "";
                 
             }
+                textCity.Text = "";
 
 
         }
+
 
     }
 }
