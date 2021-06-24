@@ -24,13 +24,13 @@ namespace Weather_APi
 
         string city;
 
-        
+
 
 
         private bool textCity_Validating(string city)
         {
             var pattern = new Regex(@"[A-Za-z]");
-            
+
             return pattern.IsMatch(city);
         }
         //static string RemoveDiacriticsPL(string city)
@@ -51,13 +51,14 @@ namespace Weather_APi
         //}
 
         // TO DO 
-        // try catch gdy nie znajduje miejscowosci w xmlu
+        // dodanie exceptionow do drugiego przycisku,
+        // zmiany wizualne aplikacji
 
         private void button1_Click(object sender, EventArgs e)
         {
             city = textCity.Text;
 
-            
+
             byte[] tempBytes;
             tempBytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
             string asciiStr = Encoding.UTF8.GetString(tempBytes);
@@ -75,26 +76,23 @@ namespace Weather_APi
                 return;
             }
 
-
-
-            //try
-          //  {
-            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
-                var doc = XDocument.Load(url);
-              //  var url1 = (string)doc1.Descendants("error").FirstOrDefault();
-            //}
-            
-            //catch (DirectoryNotFoundException wrongCityName)
-            //{
-
-            //    MessageBox.Show("Błąd", "Podaj poprawną nazwę miasta" + wrongCityName.Message, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    Reset();
-            //    return;
-            //}
-            
+            XDocument doc = new XDocument();
 
             
+            try
+            {
+                var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
+                 doc = XDocument.Load(url);
+                
+            }
+            
+            catch (Exception ex)
+            {
 
+                MessageBox.Show("Podaj poprawną nazwę miasta", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Reset();
+                return;
+            }
 
 
             var iconUrl = (string)doc.Descendants("icon").FirstOrDefault();
@@ -167,6 +165,10 @@ namespace Weather_APi
 
 
 
+
+
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -223,7 +225,7 @@ namespace Weather_APi
         private void Reset()
         {
 
-           var allTextBoxes = new List<TextBox>
+            var allTextBoxes = new List<TextBox>
             {
             txtCountry,
             textHumidity,

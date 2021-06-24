@@ -237,7 +237,6 @@ namespace Weather_APi
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.Size = new System.Drawing.Size(915, 155);
             this.dataGridView1.TabIndex = 17;
-            this.dataGridView1.Visible = false;
             // 
             // txtCountry
             // 
