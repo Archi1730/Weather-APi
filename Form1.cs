@@ -69,7 +69,7 @@ namespace Weather_APi
             if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) || !textBoxValidating)
             {
 
-                MessageBox.Show("Błąd", "Podaj poprawną nazwę miasta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Podaj poprawną nazwę miasta", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
 
 
@@ -78,15 +78,15 @@ namespace Weather_APi
 
             XDocument doc = new XDocument();
 
-            
+
             try
             {
                 var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
-                 doc = XDocument.Load(url);
-                
+                doc = XDocument.Load(url);
+
             }
-            
-            catch (Exception ex)
+
+            catch (Exception)
             {
 
                 MessageBox.Show("Podaj poprawną nazwę miasta", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -160,16 +160,11 @@ namespace Weather_APi
                 boxes.Show();
             }
 
-
-
-
-
-
-
-
-
-
         }
+
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
