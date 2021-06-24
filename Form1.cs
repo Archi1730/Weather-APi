@@ -59,8 +59,8 @@ namespace Weather_APi
 
             
             byte[] tempBytes;
-            tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
-            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+            tempBytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
+            string asciiStr = Encoding.UTF8.GetString(tempBytes);
 
 
             var textBoxValidating = textCity_Validating(city);
@@ -76,9 +76,26 @@ namespace Weather_APi
             }
 
 
-            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
 
-            var doc = XDocument.Load(url);
+            //try
+          //  {
+            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
+                var doc = XDocument.Load(url);
+              //  var url1 = (string)doc1.Descendants("error").FirstOrDefault();
+            //}
+            
+            //catch (DirectoryNotFoundException wrongCityName)
+            //{
+
+            //    MessageBox.Show("Błąd", "Podaj poprawną nazwę miasta" + wrongCityName.Message, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    Reset();
+            //    return;
+            //}
+            
+
+            
+
+
 
             var iconUrl = (string)doc.Descendants("icon").FirstOrDefault();
             var client = new WebClient();
