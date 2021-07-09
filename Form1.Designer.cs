@@ -47,8 +47,6 @@ namespace Weather_APi
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtChanceOfRain = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSunrise = new System.Windows.Forms.TextBox();
@@ -63,6 +61,7 @@ namespace Weather_APi
             this.pictureBoxDay1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxDay2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxDay3 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay1)).BeginInit();
@@ -75,9 +74,9 @@ namespace Weather_APi
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
+            this.label1.Size = new System.Drawing.Size(41, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Miasto i kraj";
+            this.label1.Text = "City: ";
             // 
             // label2
             // 
@@ -94,32 +93,32 @@ namespace Weather_APi
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 214);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 20);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Prędkość wiatru [km/h]";
+            this.label3.Text = "Wind kph";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 260);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 20);
+            this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Ciśnienie [hPa]";
+            this.label5.Text = "Pressure";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(25, 300);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 20);
+            this.label6.Size = new System.Drawing.Size(70, 20);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Wilgotność [%]";
+            this.label6.Text = "Humidity";
             // 
             // textCity
             // 
             this.textCity.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textCity.Location = new System.Drawing.Point(207, 9);
+            this.textCity.Location = new System.Drawing.Point(66, 12);
             this.textCity.Name = "textCity";
             this.textCity.Size = new System.Drawing.Size(165, 27);
             this.textCity.TabIndex = 6;
@@ -182,9 +181,9 @@ namespace Weather_APi
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(85, 139);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(137, 25);
+            this.label7.Size = new System.Drawing.Size(112, 25);
             this.label7.TabIndex = 12;
-            this.label7.Text = "°C odczuwalne";
+            this.label7.Text = "°C Feels like";
             // 
             // textMaxWindSpeed
             // 
@@ -203,16 +202,15 @@ namespace Weather_APi
             this.pictureBox1.Size = new System.Drawing.Size(125, 85);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
             // 
             // txtCloudy
             // 
             this.txtCloudy.AutoSize = true;
             this.txtCloudy.Location = new System.Drawing.Point(247, 86);
             this.txtCloudy.Name = "txtCloudy";
-            this.txtCloudy.Size = new System.Drawing.Size(102, 20);
+            this.txtCloudy.Size = new System.Drawing.Size(55, 20);
             this.txtCloudy.TabIndex = 15;
-            this.txtCloudy.Text = "Zachmurzenie";
+            this.txtCloudy.Text = "Cloudy";
             // 
             // button1
             // 
@@ -220,7 +218,7 @@ namespace Weather_APi
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(183, 51);
             this.button1.TabIndex = 16;
-            this.button1.Text = "Pokaż obecną pogodę w wybranym mieście";
+            this.button1.Text = "Show Forecast";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -237,53 +235,35 @@ namespace Weather_APi
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.Size = new System.Drawing.Size(915, 155);
             this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.Visible = false;
             // 
             // txtCountry
             // 
             this.txtCountry.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.txtCountry.Enabled = false;
-            this.txtCountry.Location = new System.Drawing.Point(378, 9);
+            this.txtCountry.Location = new System.Drawing.Point(329, 16);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(256, 27);
             this.txtCountry.TabIndex = 18;
             this.txtCountry.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 344);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 20);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Szansa na opady [%]\r\n";
-            // 
-            // txtChanceOfRain
-            // 
-            this.txtChanceOfRain.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtChanceOfRain.Enabled = false;
-            this.txtChanceOfRain.Location = new System.Drawing.Point(207, 344);
-            this.txtChanceOfRain.Name = "txtChanceOfRain";
-            this.txtChanceOfRain.Size = new System.Drawing.Size(63, 27);
-            this.txtChanceOfRain.TabIndex = 20;
-            this.txtChanceOfRain.Visible = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(392, 51);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 20);
+            this.label9.Size = new System.Drawing.Size(56, 20);
             this.label9.TabIndex = 21;
-            this.label9.Text = "Wschód:";
+            this.label9.Text = "Sunrise";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(610, 51);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 20);
+            this.label10.Size = new System.Drawing.Size(52, 20);
             this.label10.TabIndex = 22;
-            this.label10.Text = "Zachód:";
+            this.label10.Text = "Sunset";
             // 
             // txtSunrise
             // 
@@ -311,8 +291,9 @@ namespace Weather_APi
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(213, 29);
             this.button2.TabIndex = 25;
-            this.button2.Text = "Prognoza na 3 dni";
+            this.button2.Text = "Forecast for 3 days";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtDay1
@@ -393,11 +374,22 @@ namespace Weather_APi
             this.pictureBoxDay3.TabIndex = 34;
             this.pictureBoxDay3.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(260, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Country:";
+            this.label4.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 953);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBoxDay3);
             this.Controls.Add(this.pictureBoxDay2);
             this.Controls.Add(this.pictureBoxDay1);
@@ -412,8 +404,6 @@ namespace Weather_APi
             this.Controls.Add(this.txtSunrise);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtChanceOfRain);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCountry);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -434,7 +424,7 @@ namespace Weather_APi
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Prognoza Pogody";
+            this.Text = "Weather API";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay1)).EndInit();
@@ -465,8 +455,6 @@ namespace Weather_APi
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtCountry;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtChanceOfRain;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSunrise;
@@ -481,6 +469,7 @@ namespace Weather_APi
         private System.Windows.Forms.PictureBox pictureBoxDay1;
         private System.Windows.Forms.PictureBox pictureBoxDay2;
         private System.Windows.Forms.PictureBox pictureBoxDay3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

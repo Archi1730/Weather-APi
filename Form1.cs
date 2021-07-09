@@ -54,22 +54,23 @@ namespace Weather_APi
         // dodanie exceptionow do drugiego przycisku,
         // zmiany wizualne aplikacji
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
+            
             city = textCity.Text;
-
-
+   
             byte[] tempBytes;
             tempBytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
-            string asciiStr = Encoding.UTF8.GetString(tempBytes);
+            var asciiStr = Encoding.UTF8.GetString(tempBytes);
 
 
-            var textBoxValidating = textCity_Validating(city);
+            var textBoxValidating = textCity_Validating(asciiStr);
 
-            if (city.Length <= 2 || string.IsNullOrWhiteSpace(city) || !textBoxValidating)
+            if (asciiStr.Length <= 2 || string.IsNullOrWhiteSpace(asciiStr) || !textBoxValidating)
             {
 
-                MessageBox.Show("Podaj poprawną nazwę miasta", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Enter a correct city name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
 
 
@@ -81,7 +82,7 @@ namespace Weather_APi
 
             try
             {
-                var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=1&aqi=no&alerts=no&lang=pl", asciiStr);
+                var url = string.Format("http://api.weatherapi.com/v1/current.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&aqi=no", asciiStr);
                 doc = XDocument.Load(url);
 
             }
@@ -89,7 +90,7 @@ namespace Weather_APi
             catch (Exception)
             {
 
-                MessageBox.Show("Podaj poprawną nazwę miasta", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Enter a correct city name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Reset();
                 return;
             }
@@ -131,13 +132,14 @@ namespace Weather_APi
             textPressure.Text = pressure;
             textHumidity.Text = humidity;
             txtCloudy.Text = cloud;
-            txtChanceOfRain.Text = chanceOfRain;
+            
             txtSunrise.Text = sunrise;
             txtSunset.Text = sunset;
 
             pictureBox1.Image = icon;
-
-
+            button2.Show();
+            label4.Show();
+            
 
             var allTextBoxes = new List<TextBox>
             {
@@ -148,10 +150,10 @@ namespace Weather_APi
             textTemp,
             textMaxWindSpeed,
             textWindDirection,
-            txtChanceOfRain,
             txtSunrise,
-            txtSunset
-
+            txtSunset,
+            
+            
         };
 
 
@@ -159,7 +161,7 @@ namespace Weather_APi
             {
                 boxes.Show();
             }
-
+            dataGridView1.Visible = false;
         }
 
 
@@ -178,9 +180,11 @@ namespace Weather_APi
             dataTable.Columns.Add("Szansa na opady", typeof(string));
             dataTable.Columns.Add("Zachmurzenie", typeof(string));
 
+            byte[] tempBytes;
+            tempBytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
+            var asciiStr = Encoding.UTF8.GetString(tempBytes);
 
-
-            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=7&aqi=no&alerts=no&lang=pl", city);
+            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=7&aqi=no&alerts=no&lang=pl", asciiStr);
 
             var doc = XDocument.Load(url);
 
@@ -211,9 +215,10 @@ namespace Weather_APi
 
             }
             dataGridView1.DataSource = dataTable;
+            button1_Click(sender, e);
+            dataGridView1.Show();
 
-
-
+            
 
         }
 
@@ -229,7 +234,6 @@ namespace Weather_APi
             textTemp,
             textMaxWindSpeed,
             textWindDirection,
-            txtChanceOfRain,
             txtSunrise,
             txtSunset
 
@@ -243,9 +247,11 @@ namespace Weather_APi
             }
             textCity.Text = "";
 
+            button2.Visible = false;
+            label4.Visible = false;
 
         }
 
-
+        
     }
 }
