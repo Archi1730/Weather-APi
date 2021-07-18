@@ -172,19 +172,19 @@ namespace Weather_APi
         {
 
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Kraj", typeof(string));
-            dataTable.Columns.Add("Data", typeof(string));
+            dataTable.Columns.Add("Country", typeof(string));
+            dataTable.Columns.Add("Date", typeof(string));
             dataTable.Columns.Add("Temp", typeof(string));
-            dataTable.Columns.Add("Max prędkość wiatru", typeof(string));
-            dataTable.Columns.Add("Wilgotność", typeof(string));
-            dataTable.Columns.Add("Szansa na opady", typeof(string));
-            dataTable.Columns.Add("Zachmurzenie", typeof(string));
+            dataTable.Columns.Add("Max wind speed", typeof(string));
+            dataTable.Columns.Add("Humidity", typeof(string));
+            dataTable.Columns.Add("Chance of rain", typeof(string));
+            dataTable.Columns.Add("Cloudy", typeof(string));
 
             byte[] tempBytes;
             tempBytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(city);
             var asciiStr = Encoding.UTF8.GetString(tempBytes);
 
-            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=7&aqi=no&alerts=no&lang=pl", asciiStr);
+            var url = string.Format("http://api.weatherapi.com/v1/forecast.xml?key=2b8c5d82ab9047dcbd8125336210706&q={0}&days=7&aqi=no&alerts=no", asciiStr);
 
             var doc = XDocument.Load(url);
 

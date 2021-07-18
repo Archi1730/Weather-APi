@@ -29,6 +29,7 @@ namespace Weather_APi
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,21 +53,9 @@ namespace Weather_APi
             this.txtSunrise = new System.Windows.Forms.TextBox();
             this.txtSunset = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtDay1 = new System.Windows.Forms.TextBox();
-            this.txtDay2 = new System.Windows.Forms.TextBox();
-            this.txtDay3 = new System.Windows.Forms.TextBox();
-            this.txtTempDay1 = new System.Windows.Forms.TextBox();
-            this.txtTempDay2 = new System.Windows.Forms.TextBox();
-            this.txtTempDay3 = new System.Windows.Forms.TextBox();
-            this.pictureBoxDay1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxDay2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxDay3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -227,13 +216,21 @@ namespace Weather_APi
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Location = new System.Drawing.Point(66, 426);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView1.Size = new System.Drawing.Size(915, 155);
+            this.dataGridView1.Size = new System.Drawing.Size(928, 138);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.Visible = false;
             // 
@@ -296,84 +293,6 @@ namespace Weather_APi
             this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // txtDay1
-            // 
-            this.txtDay1.Enabled = false;
-            this.txtDay1.Location = new System.Drawing.Point(25, 650);
-            this.txtDay1.Name = "txtDay1";
-            this.txtDay1.Size = new System.Drawing.Size(146, 27);
-            this.txtDay1.TabIndex = 26;
-            this.txtDay1.Visible = false;
-            // 
-            // txtDay2
-            // 
-            this.txtDay2.Enabled = false;
-            this.txtDay2.Location = new System.Drawing.Point(439, 650);
-            this.txtDay2.Name = "txtDay2";
-            this.txtDay2.Size = new System.Drawing.Size(146, 27);
-            this.txtDay2.TabIndex = 27;
-            this.txtDay2.Visible = false;
-            // 
-            // txtDay3
-            // 
-            this.txtDay3.Enabled = false;
-            this.txtDay3.Location = new System.Drawing.Point(835, 650);
-            this.txtDay3.Name = "txtDay3";
-            this.txtDay3.Size = new System.Drawing.Size(146, 27);
-            this.txtDay3.TabIndex = 28;
-            this.txtDay3.Visible = false;
-            // 
-            // txtTempDay1
-            // 
-            this.txtTempDay1.Enabled = false;
-            this.txtTempDay1.Location = new System.Drawing.Point(25, 684);
-            this.txtTempDay1.Name = "txtTempDay1";
-            this.txtTempDay1.Size = new System.Drawing.Size(125, 27);
-            this.txtTempDay1.TabIndex = 29;
-            this.txtTempDay1.Visible = false;
-            // 
-            // txtTempDay2
-            // 
-            this.txtTempDay2.Enabled = false;
-            this.txtTempDay2.Location = new System.Drawing.Point(439, 683);
-            this.txtTempDay2.Name = "txtTempDay2";
-            this.txtTempDay2.Size = new System.Drawing.Size(125, 27);
-            this.txtTempDay2.TabIndex = 30;
-            this.txtTempDay2.Visible = false;
-            // 
-            // txtTempDay3
-            // 
-            this.txtTempDay3.Enabled = false;
-            this.txtTempDay3.Location = new System.Drawing.Point(835, 683);
-            this.txtTempDay3.Name = "txtTempDay3";
-            this.txtTempDay3.Size = new System.Drawing.Size(125, 27);
-            this.txtTempDay3.TabIndex = 31;
-            this.txtTempDay3.Visible = false;
-            // 
-            // pictureBoxDay1
-            // 
-            this.pictureBoxDay1.Location = new System.Drawing.Point(25, 728);
-            this.pictureBoxDay1.Name = "pictureBoxDay1";
-            this.pictureBoxDay1.Size = new System.Drawing.Size(125, 62);
-            this.pictureBoxDay1.TabIndex = 32;
-            this.pictureBoxDay1.TabStop = false;
-            // 
-            // pictureBoxDay2
-            // 
-            this.pictureBoxDay2.Location = new System.Drawing.Point(439, 728);
-            this.pictureBoxDay2.Name = "pictureBoxDay2";
-            this.pictureBoxDay2.Size = new System.Drawing.Size(125, 62);
-            this.pictureBoxDay2.TabIndex = 33;
-            this.pictureBoxDay2.TabStop = false;
-            // 
-            // pictureBoxDay3
-            // 
-            this.pictureBoxDay3.Location = new System.Drawing.Point(835, 728);
-            this.pictureBoxDay3.Name = "pictureBoxDay3";
-            this.pictureBoxDay3.Size = new System.Drawing.Size(125, 62);
-            this.pictureBoxDay3.TabIndex = 34;
-            this.pictureBoxDay3.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -390,15 +309,6 @@ namespace Weather_APi
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 953);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.pictureBoxDay3);
-            this.Controls.Add(this.pictureBoxDay2);
-            this.Controls.Add(this.pictureBoxDay1);
-            this.Controls.Add(this.txtTempDay3);
-            this.Controls.Add(this.txtTempDay2);
-            this.Controls.Add(this.txtTempDay1);
-            this.Controls.Add(this.txtDay3);
-            this.Controls.Add(this.txtDay2);
-            this.Controls.Add(this.txtDay1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtSunset);
             this.Controls.Add(this.txtSunrise);
@@ -427,9 +337,6 @@ namespace Weather_APi
             this.Text = "Weather API";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDay3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,15 +367,6 @@ namespace Weather_APi
         private System.Windows.Forms.TextBox txtSunrise;
         private System.Windows.Forms.TextBox txtSunset;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtDay1;
-        private System.Windows.Forms.TextBox txtDay2;
-        private System.Windows.Forms.TextBox txtDay3;
-        private System.Windows.Forms.TextBox txtTempDay1;
-        private System.Windows.Forms.TextBox txtTempDay2;
-        private System.Windows.Forms.TextBox txtTempDay3;
-        private System.Windows.Forms.PictureBox pictureBoxDay1;
-        private System.Windows.Forms.PictureBox pictureBoxDay2;
-        private System.Windows.Forms.PictureBox pictureBoxDay3;
         private System.Windows.Forms.Label label4;
     }
 }
